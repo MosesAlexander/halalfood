@@ -2,8 +2,14 @@ package com.example.halalfood;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,6 +29,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
 
     private static final String TAG = "HALALTAG";
+    private static final int SPLASH_TIME_OUT = 3000;
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setMessage("Are you sure you want to exit?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
 
     @Override
     public boolean onMarkerClick(final Marker marker)
@@ -46,23 +67,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-        Log.e(TAG, "CE PULA MEA");
+        setContentView(R.layout.splash);
+        //display the logo during 2 seconds,
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                MapsActivity.this.setContentView(R.layout.activity_maps);
+                // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+                SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                        .findFragmentById(R.id.map);
+                mapFragment.getMapAsync(MapsActivity.this);
+
+            }
+        }, SPLASH_TIME_OUT);
+
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         Marker m1,m2,m3,m4;
@@ -169,6 +190,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onInfoWindowLongClick(Marker marker) {
         if (marker.getTitle().equals("Török Döner Kebab")) {
+            Intent intent = new Intent(this, FoodActivity.class);
+            startActivity(intent);
             Log.e(TAG, "Török Döner Kebab");
         } else if (marker.getTitle().equals("Baalbek Lebanese Restaurant")) {
             Log.e(TAG, "Baalbek Lebanese Restaurant");
