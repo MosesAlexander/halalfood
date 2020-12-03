@@ -105,7 +105,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     tv1.setText(title);
 
-                } else if (arg0.getTitle().equals("Antalya Kebab")) {
+                } else if (arg0.getTitle().equals("Mughal Shahi")) {
                     v = getLayoutInflater().inflate(R.layout.mughalinfowindowlayout, null);
 
                     LatLng latLng = arg0.getPosition();
@@ -168,6 +168,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onInfoWindowLongClick(Marker marker) {
-        Log.e(TAG, "BAFTA MUIEEEE");
+        if (marker.getTitle().equals("Török Döner Kebab")) {
+            Log.e(TAG, "Török Döner Kebab");
+        } else if (marker.getTitle().equals("Baalbek Lebanese Restaurant")) {
+            Log.e(TAG, "Baalbek Lebanese Restaurant");
+        } else if (marker.getTitle().equals("Mughal Shahi")) {
+            Log.e(TAG, "Mughal Shahi");
+        } else if (marker.getTitle().equals("Antalya Kebab")) {
+            Log.e(TAG, "Antalya Kebab");
+        }
+
     }
 }
