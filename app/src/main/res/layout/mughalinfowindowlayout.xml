@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:background="#FFFFFF" >
+
+<ImageView
+    android:id="@+id/mughal"
+    android:layout_width="250dp"
+    android:layout_height="250dp"
+    android:src="@mipmap/mughal" />
+
+<TextView
+    android:id="@+id/textView1mughal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Mughal Shahi"
+    android:textSize="24dp"/>
+</LinearLayout>

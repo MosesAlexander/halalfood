@@ -105,6 +105,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     tv1.setText(title);
 
+                } else if (arg0.getTitle().equals("Antalya Kebab")) {
+                    v = getLayoutInflater().inflate(R.layout.mughalinfowindowlayout, null);
+
+                    LatLng latLng = arg0.getPosition();
+
+                    ImageView im = (ImageView) v.findViewById(R.id.mughal);
+                    TextView tv1 = (TextView) v.findViewById(R.id.textView1mughal);
+                    String title = arg0.getTitle();
+                    String informations = arg0.getSnippet();
+
+                    tv1.setText(title);
+
+                } else if (arg0.getTitle().equals("Antalya Kebab")) {
+                    v = getLayoutInflater().inflate(R.layout.antalyainfowindowlayout, null);
+
+                    LatLng latLng = arg0.getPosition();
+
+                    ImageView im = (ImageView) v.findViewById(R.id.antalya);
+                    TextView tv1 = (TextView) v.findViewById(R.id.textView1antalya);
+                    String title = arg0.getTitle();
+                    String informations = arg0.getSnippet();
+
+                    tv1.setText(title);
+
                 }
 
              //   if(onMarkerClick(arg0)==true && markerclicked==1){
